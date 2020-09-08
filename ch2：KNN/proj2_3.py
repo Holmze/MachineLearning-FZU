@@ -3,10 +3,10 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 import time
 
-fo = open('MachineLearning-FZU\ch2：KNN\cifar-10-python\cifar-10-python\cifar-10-batches-py\data_batch_1','rb')
+fo = open('D:\Course\机器学习\dataset\cifar-10-python\cifar-10-python\cifar-10-batches-py\data_batch_1','rb')
 train_data = pickle.load(fo,encoding='bytes')
 fo.close()
-fo = open('MachineLearning-FZU\ch2：KNN\cifar-10-python\cifar-10-python\cifar-10-batches-py\\test_batch','rb')
+fo = open('D:\Course\机器学习\dataset\cifar-10-python\cifar-10-python\cifar-10-batches-py\\test_batch','rb')
 test_data = pickle.load(fo,encoding='bytes')
 fo.close()
 #print(train_data)
