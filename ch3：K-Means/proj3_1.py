@@ -1,5 +1,3 @@
-###object1.1:sklearn.datasets.make_circle and sklearn.datasets.make_moons
-
 import sklearn.datasets
 import matplotlib.pyplot as plt  
 import numpy as np  
@@ -13,10 +11,11 @@ x1,y1=sklearn.datasets.make_circles(n_samples=400,factor=0.5,noise=0.05)
 plt.subplot(111)
 plt.title('make_circles')
 
-
 k_means = KMeans(n_clusters=2, random_state=5)
 y_pred = k_means.fit_predict(x1)
+C_c= k_means.cluster_centers_
 plt.scatter(x1[:, 0], x1[:, 1], c=y_pred)
+plt.scatter(C_c[:,0],C_c[:,1],c='b')
 
 print("ACC = ",metrics.accuracy_score(y1,y_pred))
 print("MNI = ",metrics.normalized_mutual_info_score(y1,y_pred))
