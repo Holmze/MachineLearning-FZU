@@ -8,7 +8,6 @@ import pandas as pd
 from scipy.optimize import linear_sum_assignment as linear_assignment
 # from sklearn.utils.linear_assignment_ import linear_assignment
 from sklearn.utils import shuffle
-from sklearn.decomposition import PCA
 
 img_List = []
 target_List = []
@@ -62,13 +61,12 @@ for img_filefolder in os.listdir(path):
     for img_file in os.listdir(path+img_filefolder):
         img = Image.open(path+img_filefolder+"/"+img_file)
         img = np.asarray(img)
-        img = img.reshape((1,-1))
+        # img = img.reshape((1,-1))
         sub_img_list.append(img)
         sub_target_list.append(np.array(cnt))
     img_List.append(sub_img_list)
     target_List.append(sub_target_list)
-# presentation()
-
+presentation()
 img_matrix = img_List[0][0]
 target_vector = target_List[0][0]
 for i in range(len(img_List)):

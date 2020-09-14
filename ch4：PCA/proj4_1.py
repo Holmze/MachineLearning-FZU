@@ -83,6 +83,10 @@ target_vector = np.delete(target_vector,0,0)
 train_data,target_data = data_packaging(img_matrix,target_vector)
 train_data = train_data.values
 target_data = target_data.values
+
+pca = PCA(n_components=20)
+train_data = pca.fit_transform(train_data)
+
 KM = KMeans(n_clusters=10)
 KM.fit(train_data)
 pre_y = KM.predict(train_data)
