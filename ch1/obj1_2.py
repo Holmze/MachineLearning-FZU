@@ -33,6 +33,7 @@ for x in os.listdir(image_dir):##获取文件索引list
 a=1
 for image_filename in image_filenames:##拼接文件
     data = readpgm(image_filename)
+    print(data)
     plt.subplot(5,6,a)
     a=a+1
     plt.imshow(data[0].reshape(120,128))
