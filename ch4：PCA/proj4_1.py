@@ -84,7 +84,7 @@ train_data,target_data = data_packaging(img_matrix,target_vector)
 train_data = train_data.values
 target_data = target_data.values
 
-pca = PCA(n_components=20)
+pca = PCA(n_components=1)
 train_data = pca.fit_transform(train_data)
 
 KM = KMeans(n_clusters=10)
