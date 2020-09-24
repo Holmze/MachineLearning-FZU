@@ -40,7 +40,7 @@ figure = plt.figure()
 ax1 = figure.add_subplot(1, 2, 1)
 ax2 = figure.add_subplot(1, 2, 2)
 for i in range(1437):
-    # fontdict={'weight': 'bold', 'size': 9} 调整字体粗细
+    fontdict={'weight': 'bold', 'size': 9} #调整字体粗细
     ax1.text(X_train_pca[i, 0], X_train_pca[i, 1], str(y_train[i]), color=plt.cm.Set1(y_train[i]/10.))
     ax2.text(X_train_lda[i, 0], X_train_lda[i, 1], str(y_train[i]), color=plt.cm.Set1(y_train[i]/10.))
 for j in range(360):

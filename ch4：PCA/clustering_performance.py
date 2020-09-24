@@ -32,11 +32,13 @@ def cluster_acc(y_true, y_pred):
     for i in range(y_pred.size):
         w[y_pred[i], y_true[i]] += 1
     ind = linear_assignment(w.max() - w)
+    # print("ind is",ind)
     sum = 0
     for i in ind[0]:
         for j in ind[1]:
             sum += w[i,j]
     # print(w)
+    print("w:",w,"ind:",ind,sum,y_pred.size)
     return sum * 1.0 / y_pred.size
     # return sum([w[i, j] for i, j in ind]) * 1.0 / y_pred.size
 
