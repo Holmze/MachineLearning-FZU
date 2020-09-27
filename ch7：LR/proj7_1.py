@@ -2,6 +2,7 @@ from sklearn.datasets import load_digits
 from sklearn import naive_bayes
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 from clustering_performance import cluster_acc
 import numpy as np
 import os
@@ -36,8 +37,15 @@ def test_GaussianNB(*data):
     print('高斯贝叶斯分类器:','%.4f' % cls.score(X_test, y_test))
     return cls.score(X_test, y_test)
 
+def test_Logistic(*data):
+    X_train, X_test, y_train, y_test = data
+    clf = LogisticRegression(random_state=0, solver='newton-cg', multi_class='multinomial')
+    clf.fit(X_train, y_train)
+    print('LogisticRegression分类器:','%.4f' % clf.score(X_test, y_test))
+    return clf.score(X_test, y_test)
 
-path_face = 'MachineLearning-FZU\ch3：K-Means\project3_face_images\\face_images'
+
+path_face = 'D:\Course\机器学习\MachineLearning-FZU\ch3：K-Means\project3_face_images\\face_images'
 path_flower = 'D:\Course\机器学习\MachineLearning-FZU\ch5：LDA\LDA_dataset_17flowers'
 
 
@@ -55,7 +63,7 @@ def createDatabase(path):
         Trainneed = os.listdir(path + '/' + TrainFiles[k])  # 遍历每个子文件夹里的每张图片
         Trainneednumber = len(Trainneed)  # 每个子文件里的图片个数
         for i in range(0, Trainneednumber):
-            # print(path + '/' + TrainFiles[k] + '/' + Trainneed[i])
+            print(path + '/' + TrainFiles[k] + '/' + Trainneed[i])
             image = Image.open(path + '/' + TrainFiles[k] + '/' + Trainneed[i])  # 数据类型转换
             # print(path + '/' + TrainFiles[k] + '/' + Trainneed[i])
             image = image.convert('L') 
@@ -88,12 +96,15 @@ X_train_face, X_test_face, y_train_face, y_test_face = train_test_split(X_train_
 print('17flowers')
 test_KNN(X_train_flower, X_test_flower, y_train_flower, y_test_flower)
 test_GaussianNB(X_train_flower, X_test_flower, y_train_flower, y_test_flower)
+test_Logistic(X_train_flower, X_test_flower, y_train_flower, y_test_flower)
 print('Digits')
 test_KNN(X_train_digits, X_test_digits, y_train_digits, y_test_digits)
 test_GaussianNB(X_train_digits, X_test_digits, y_train_digits, y_test_digits)
+test_Logistic(X_train_digits, X_test_digits, y_train_digits, y_test_digits)
 print('Face images')
 test_KNN(X_train_face, X_test_face, y_train_face, y_test_face)
 test_GaussianNB(X_train_face, X_test_face, y_train_face, y_test_face)
+test_Logistic(X_train_face, X_test_face, y_train_face, y_test_face)
 
 # import numpy as np
 # X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])#训练集
