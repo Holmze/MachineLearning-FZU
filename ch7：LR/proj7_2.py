@@ -8,11 +8,12 @@ from sklearn.linear_model import LogisticRegression
 import clustering_performance
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import naive_bayes
+import time
 
 path = 'D:\Course\机器学习\MachineLearning-FZU\ch7：LR/cifar-10-batches-py/'
 
 
-def unpickle(file):  # 官方给的例程
+def unpickle(file):
     with open(file, 'rb') as fo:
         cifar = pickle.load(fo, encoding='bytes')
     return cifar
@@ -48,13 +49,16 @@ def test_KNN(*data):
     return ACC
 
 
+start_time = time.time()
 test_data = unpickle(path + 'test_batch')
 for i in range(1, 4):
     train_data = unpickle(path + 'data_batch_' + str(i))
     X_train, y_train = train_data[b'data'][0:1234], np.array(train_data[b'labels'][0:1234])
     X_test, y_test = test_data[b'data'][0:1234], np.array(test_data[b'labels'][0:1234])
+    print(X_train.size,X_test.size)
     print()
     print('======','data_batch_' + str(i),'===========')
     test_KNN(X_train, X_test, y_train, y_test)
     test_GaussianNB(X_train, X_test, y_train, y_test)
     test_LR(X_train, X_test, y_train, y_test)
+print(time.time()-start_time)
