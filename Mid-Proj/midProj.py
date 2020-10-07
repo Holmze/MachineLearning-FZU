@@ -21,7 +21,7 @@ from torch.utils.data import Subset
 from PIL.Image import BICUBIC
 from torch.utils.data import DataLoader
 import matplotlib.pylab as plt
-from apex import amp
+# from apex import amp
 from ignite.utils import convert_tensor
 from ignite.engine import Engine, Events, create_supervised_evaluator
 from ignite.metrics import RunningAverage, Accuracy, Precision, Recall, Loss, TopKCategoricalAccuracy
@@ -166,7 +166,7 @@ class CIFARClassifierELUPaper(nn.Module):
             # Block 8
             nn.Conv2d(1152, num_classes, 1, padding=0) # 1
         )
- 
+
     def forward(self, x):
         return self.main(x).view(x.size(0),-1)
 
@@ -174,7 +174,7 @@ model=CIFARClassifierELUPaper()
 
 print(model)
     
-print_num_params(model)
+# print_num_params(model)
 
 def ZCA_whitening(data):
     
@@ -233,7 +233,6 @@ if os.path.isfile(filename):
 
 # Initialize Amp
 model, optimizer = amp.initialize(model, optimizer, opt_level="O2", num_losses=1)
-   
     
 batch = next(iter(train_loader))
 
@@ -320,10 +319,10 @@ training_saver = ModelCheckpoint("checkpoint_190520",
 
 trainer.add_event_handler(Events.EPOCH_STARTED(every=3), training_saver, 
 {
-                              "model": model,
-                              "optimizer": optimizer,
-                              "lr_scheduler": lr_scheduler
-                          })
+    "model": model,
+    "optimizer": optimizer,
+    "lr_scheduler": lr_scheduler
+})
 # Store the best model
 def default_score_fn(engine):
     score = engine.state.metrics['Accuracy']
