@@ -13,7 +13,7 @@ from sklearn.decomposition import PCA
 img_List = []
 target_List = []
 cnt = 0
-path = "D:\\Course\\机器学习\\MachineLearning-FZU\\ch3：K-Means\\project3_face_images\\face_images/"
+path = "ch3：K-Means\project3_face_images\\face_images/"
 
 # picture size : (200,180,3)
 def cluster_acc(y_true, y_pred):

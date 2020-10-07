@@ -3,7 +3,7 @@ import pylab as plt
 import PIL.Image as image
 from sklearn.cluster import KMeans
 
-img = plt.imread('MachineLearning-FZU\ch3：K-Means\StoneHenge\StoneHenge.jpg')
+img = plt.imread('ch3：K-Means\StoneHenge\StoneHenge.jpg')
 
 img1 = img.reshape((img.shape[0]*img.shape[1], 3))
 
@@ -23,7 +23,7 @@ def k_means(k):
     for i in range(height):
         for j in range(width):
             pic_new.putpixel((j, i), tuple((center[label[i][j]])))
-    pic_new.save("MachineLearning-FZU\ch3：K-Means\StoneHenge\StoneHenge_"+str(k)+"Means.jpg", "JPEG")
+    pic_new.save("ch3：K-Means\StoneHenge\StoneHenge_"+str(k)+"Means.jpg", "JPEG")
 
 for i in range(2,10):
     k_means(i)
